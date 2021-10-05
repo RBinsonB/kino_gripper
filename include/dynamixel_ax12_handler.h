@@ -1,7 +1,6 @@
 #ifndef DYNAMIXEL_AX12_HANDLER_H
 #define DYNAMIXEL_AX12_HANDLER_H
 
-
 #include <stdexcept>
 #include <iostream>
 #include <string>
