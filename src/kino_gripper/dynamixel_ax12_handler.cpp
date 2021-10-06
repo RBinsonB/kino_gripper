@@ -24,6 +24,7 @@ bool DynamixelAX12Handler::SetBaudrate(){
 bool DynamixelAX12Handler::InitServo(){
 	if (!OpenPort()) throw DynamixelAX12Exception("could not open servomotor " + std::to_string(device_id_) + " port on " + device_name_);
 	if (!SetBaudrate()) throw DynamixelAX12Exception("cannot set servomotor baudrate to "+ std::to_string(baudrate_));
+	connected_ = true;
 	return true;
 }
 
@@ -116,10 +117,21 @@ bool DynamixelAX12Handler::HandleWriteComm(uint8_t address, const uint16_t& data
 }
 
 bool DynamixelAX12Handler::CheckForError(int comm_result, uint8_t dxl_error){
-	// If comm or istruction failed, thrwo exception with error string
-	if (comm_result != COMM_SUCCESS) throw DynamixelAX12Exception(packetHandler_->getTxRxResult(comm_result));
-	else if (dxl_error != 0) throw DynamixelAX12Exception(packetHandler_->getRxPacketError(dxl_error));
-	else return true;
+	// If comm or istruction failed, throw exception with error string
+	if (comm_result != COMM_SUCCESS){
+		connected_ = false;
+		throw DynamixelAX12Exception(packetHandler_->getTxRxResult(comm_result));
+	}
+	else{
+		if (!connected_) init_ = false; // If servomotor just connected or reconnected, it is reset
+		connected_ = true;
+		if (dxl_error != 0) throw DynamixelAX12Exception(packetHandler_->getRxPacketError(dxl_error));
+		else return true;
+	}
+}
+
+const bool DynamixelAX12Handler::IsConnected(){
+	return connected_;
 }
 
 

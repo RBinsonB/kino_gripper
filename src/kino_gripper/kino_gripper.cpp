@@ -17,8 +17,13 @@ void KinoGripper::UpdateClosingAngle(){
 }
 
 bool KinoGripper::SetSpeed(uint16_t speed){
+	speed_ = speed;
+	return WriteSpeed();
+}
+
+bool KinoGripper::WriteSpeed(){
 	try{
-		gripper_servo_->SetSpeed(speed);
+		gripper_servo_->SetSpeed(speed_);
 	}
 	catch (DynamixelAX12Exception& e){
 		std::string error_msg = "could not set gripper speed, "+std::string(e.what());
@@ -44,33 +49,47 @@ bool KinoGripper::SetMinMaxAngle(uint16_t min_angle, uint16_t max_angle){
 	min_angle_ = min_angle;
 	max_angle_ = max_angle;
 	UpdateClosingAngle();
+	return WriteMinMaxAngle();
+}
+
+bool KinoGripper::WriteMinMaxAngle(){
 	try{
 		EnableTorque(false);
-		gripper_servo_->SetMinMaxAngle(min_angle, max_angle);
+		gripper_servo_->SetMinMaxAngle(min_angle_, max_angle_);
 	}
 	catch (DynamixelAX12Exception& e){
 		std::string error_msg = "could not set min-max angles, "+std::string(e.what());
 		PrintWarning(error_msg);
 		return false;
 	}
-	return true;
+	return true;	
 }
 
 bool KinoGripper::SetCompliance(uint8_t cw_margin, uint8_t ccw_margin, uint8_t cw_slope=32, uint8_t ccw_slope=32, uint16_t punch=32){
+	cw_margin_ = cw_margin;
+	ccw_margin_ = ccw_margin;
+	cw_slope_ = cw_slope;
+	ccw_slope_ = ccw_slope;
+	punch_ = punch;
+	return WriteCompliance();
+}
+
+bool KinoGripper::WriteCompliance(){
 	try{
 		EnableTorque(false);
-		gripper_servo_->SetCompliance(cw_margin, ccw_margin, cw_slope, ccw_slope, punch);
+		gripper_servo_->SetCompliance(cw_margin_, ccw_margin_, cw_slope_, ccw_slope_, punch_);
 	}
 	catch (DynamixelAX12Exception& e){
 		std::string error_msg = "could not set gripper compliance values, "+std::string(e.what());
 		PrintWarning(error_msg);
 		return false;
 	}
-	return true;
+	return true;	
 }
 
 bool KinoGripper::Close(){
 	try{
+		CheckForReset();
 		EnableTorque(true);
 		gripper_servo_->SendPositionCommand(closing_angle_);
 	}
@@ -84,6 +103,7 @@ bool KinoGripper::Close(){
 
 bool KinoGripper::Open(){
 	try{
+		CheckForReset();
 		EnableTorque(true);
 		gripper_servo_->SendPositionCommand(max_angle_);
 	}
@@ -116,6 +136,21 @@ bool KinoGripper::IsMoving() {
 		std::string error_msg = "could not get gripper info, "+std::string(e.what());
 		PrintWarning(error_msg);
 		return false;
+	}
+}
+
+// Check if servomotor was deconnected and rewrite RAM config if so
+// Should be called before sending command to the servomotor
+void KinoGripper::CheckForReset(){
+	// If servo is connected but not initialized (after disconnection)
+	if (gripper_servo_->IsConnected() & !gripper_servo_->init_){
+		// Re-write RAM config values
+		WriteSpeed();
+		WriteCompliance();
+		// Set servo as initialized
+		std::cout << "COMM RESET" << std::endl; 
+		gripper_servo_->init_ = true;
+		return;
 	}
 }
 

@@ -34,8 +34,11 @@ public:
 	bool SetCompliance(uint8_t cw_margin, uint8_t ccw_margin, uint8_t cw_slope, uint8_t ccw_slope, uint16_t punch);
 	bool EnableTorque(bool enable);
 	bool SendPositionCommand(uint16_t goal_position);
+	const bool IsConnected();
 	const int CurrPosition();
 	const bool IsMoving();
+
+	bool init_ = false;					// initialization flag
 
 private:
 	bool OpenPort();
@@ -52,6 +55,7 @@ private:
 
 	uint16_t current_position_ = 0;				// current servo position
 	bool is_moving_ = false;					// true if servo is trying to reach a position
+	bool connected_ = false;					// connection flag
 
 	const uint8_t device_id_;
 	const char* device_name_;

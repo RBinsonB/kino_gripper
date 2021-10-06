@@ -4,6 +4,7 @@
 #include <memory>
 #include <limits>
 #include <string>
+#include <iostream>
 #include "dynamixel_ax12_handler.h"
 
 /* Kino Gripper Class
@@ -25,7 +26,7 @@ public:
 	
 	uint8_t close_ratio_ = 255;		//Gripper closing ratio, from 0 to 255, 0 being minimum angle and 255 maximum
 
-protected:
+private:
 	std::unique_ptr<DynamixelAX12Handler> gripper_servo_;
 
 	void UpdateClosingAngle();
@@ -36,7 +37,19 @@ protected:
 	uint16_t min_angle_ = 570;		// Default value for minimum servomotor angle (closed gripper)
 	uint16_t max_angle_ = 685;		// Default value for maximum servomotor angle (open gripper)
 	uint16_t angle_threshold_ = 3; 	// Angle threshold to consider the gripper closed
+	uint16_t speed_ = 50;
+	uint8_t cw_margin_ = 1;
+	uint8_t ccw_margin_ = 1;
+	uint8_t cw_slope_ = 32;
+	uint8_t ccw_slope_ = 32;
+	uint16_t punch_ = 32;
 	uint16_t closing_angle_;
+	bool init_ = false; 			// intialization flag
+
+	bool WriteSpeed();
+	bool WriteMinMaxAngle();
+	bool WriteCompliance();
+	void CheckForReset();
 };
 
 #endif //KINO_GRIPPER_H

@@ -38,11 +38,14 @@
 
 
 
-int main(){
-	KinoGripper gripper(1, "/dev/ttyUSB0", 1000000, 255);
+int main(int argc, char **argv){
+	ros::init(argc, argv, "gripper");
+	ros::NodeHandle nh;
+
+	KinoGripper gripper(1, "/dev/ttyACM0", 1000000, 255);
 	gripper.SetSpeed(50);
 
-	while(true){
+	while(ros::ok()){
 		if (!gripper.IsMoving()){
 			if (gripper.IsClosed()){
 				ROS_INFO_STREAM("Opening gripper");
