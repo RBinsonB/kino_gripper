@@ -38,8 +38,6 @@ public:
 	const int CurrPosition();
 	const bool IsMoving();
 
-	bool init_ = false;					// initialization flag
-
 private:
 	bool OpenPort();
 	bool SetBaudrate();

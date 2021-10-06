@@ -123,7 +123,6 @@ bool DynamixelAX12Handler::CheckForError(int comm_result, uint8_t dxl_error){
 		throw DynamixelAX12Exception(packetHandler_->getTxRxResult(comm_result));
 	}
 	else{
-		if (!connected_) init_ = false; // If servomotor just connected or reconnected, it is reset
 		connected_ = true;
 		if (dxl_error != 0) throw DynamixelAX12Exception(packetHandler_->getRxPacketError(dxl_error));
 		else return true;

@@ -89,7 +89,8 @@ bool KinoGripper::WriteCompliance(){
 
 bool KinoGripper::Close(){
 	try{
-		CheckForReset();
+		WriteSpeed();
+		WriteCompliance();
 		EnableTorque(true);
 		gripper_servo_->SendPositionCommand(closing_angle_);
 	}
@@ -103,7 +104,8 @@ bool KinoGripper::Close(){
 
 bool KinoGripper::Open(){
 	try{
-		CheckForReset();
+		WriteSpeed();
+		WriteCompliance();
 		EnableTorque(true);
 		gripper_servo_->SendPositionCommand(max_angle_);
 	}
@@ -136,21 +138,6 @@ bool KinoGripper::IsMoving() {
 		std::string error_msg = "could not get gripper info, "+std::string(e.what());
 		PrintWarning(error_msg);
 		return false;
-	}
-}
-
-// Check if servomotor was deconnected and rewrite RAM config if so
-// Should be called before sending command to the servomotor
-void KinoGripper::CheckForReset(){
-	// If servo is connected but not initialized (after disconnection)
-	if (gripper_servo_->IsConnected() & !gripper_servo_->init_){
-		// Re-write RAM config values
-		WriteSpeed();
-		WriteCompliance();
-		// Set servo as initialized
-		std::cout << "COMM RESET" << std::endl; 
-		gripper_servo_->init_ = true;
-		return;
 	}
 }
 

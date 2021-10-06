@@ -49,7 +49,6 @@ private:
 	bool WriteSpeed();
 	bool WriteMinMaxAngle();
 	bool WriteCompliance();
-	void CheckForReset();
 };
 
 #endif //KINO_GRIPPER_H
