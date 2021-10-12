@@ -15,7 +15,8 @@ to control the gripper
 */
 class KinoGripper{
 public:
-	KinoGripper(uint8_t device_id, char* device_name, int baudrate, uint8_t close_ratio);
+	KinoGripper(int device_id, char* device_name, int baudrate);
+	void InitGripper();
 
 	bool SetSpeed(uint16_t speed);
 	bool SetMinMaxAngle(uint16_t min_angle, uint16_t max_angle);
@@ -24,12 +25,14 @@ public:
 	bool Open();
 	bool IsClosed();
 	bool IsMoving();
-	
-	uint8_t close_ratio_ = 255;		//Gripper closing ratio, from 0 to 255, 0 being minimum angle and 255 maximum
 
-private:
+protected:
 	std::unique_ptr<DynamixelAX12Handler> gripper_servo_;	// Servo handler pointer
 	std::unique_ptr<GripperInverseKinematics> ik_solver_;	// Inverse Kinematics
+
+	int device_id_;
+	int baudrate_;
+	char* device_name_;
 
 	bool EnableTorque(bool enable);
 	virtual void PrintError(std::string& error_msg);

@@ -1,11 +1,14 @@
 #include "kino_gripper.h"
 
-KinoGripper::KinoGripper(uint8_t device_id, char* device_name, int baudrate, uint8_t close_ratio=255) : close_ratio_(close_ratio){
+KinoGripper::KinoGripper(int device_id, char* device_name, int baudrate) : device_id_(device_id), device_name_(device_name), baudrate_(baudrate){
+}
+
+void KinoGripper::InitGripper(){
 	// Create Inverser Kinematics solver
 	ik_solver_ = std::unique_ptr<GripperInverseKinematics>(new GripperInverseKinematics(min_angle_, max_angle_));
 
 	// Create servomotor handler
-	gripper_servo_ = std::unique_ptr<DynamixelAX12Handler>(new DynamixelAX12Handler(device_id, device_name, baudrate));
+	gripper_servo_ = std::unique_ptr<DynamixelAX12Handler>(new DynamixelAX12Handler(device_id_, device_name_, baudrate_));
 
 	// Initalize servomotor
 	gripper_servo_->InitServo();
