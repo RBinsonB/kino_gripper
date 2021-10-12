@@ -53,7 +53,7 @@ int main(int argc, char **argv){
 			}
 			else{
 				ROS_INFO_STREAM("Closing gripper");
-				gripper.Close();
+				gripper.Close(0);
 			}
 		}
 		ros::Duration(1.5).sleep();

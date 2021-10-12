@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include "dynamixel_ax12_handler.h"
+#include "gripper_inverse_kinematics.h"
 
 /* Kino Gripper Class
 
@@ -19,7 +20,7 @@ public:
 	bool SetSpeed(uint16_t speed);
 	bool SetMinMaxAngle(uint16_t min_angle, uint16_t max_angle);
 	bool SetCompliance(uint8_t cw_margin, uint8_t ccw_margin, uint8_t cw_slope, uint8_t ccw_slope, uint16_t punch);
-	bool Close();
+	bool Close(float distance);
 	bool Open();
 	bool IsClosed();
 	bool IsMoving();
@@ -27,15 +28,15 @@ public:
 	uint8_t close_ratio_ = 255;		//Gripper closing ratio, from 0 to 255, 0 being minimum angle and 255 maximum
 
 private:
-	std::unique_ptr<DynamixelAX12Handler> gripper_servo_;
+	std::unique_ptr<DynamixelAX12Handler> gripper_servo_;	// Servo handler pointer
+	std::unique_ptr<GripperInverseKinematics> ik_solver_;	// Inverse Kinematics
 
-	void UpdateClosingAngle();
 	bool EnableTorque(bool enable);
 	virtual void PrintError(std::string& error_msg);
 	virtual void PrintWarning(std::string& warning_msg);
 
-	uint16_t min_angle_ = 570;		// Default value for minimum servomotor angle (closed gripper)
-	uint16_t max_angle_ = 685;		// Default value for maximum servomotor angle (open gripper)
+	uint16_t min_angle_ = 392;		// Default value for minimum servomotor angle (closed gripper)
+	uint16_t max_angle_ = 512;		// Default value for maximum servomotor angle (open gripper)
 	uint16_t angle_threshold_ = 3; 	// Angle threshold to consider the gripper closed
 	uint16_t speed_ = 50;
 	uint8_t cw_margin_ = 1;

@@ -1,52 +1,10 @@
-#include <cmath>
-#include <iostream>
-#include <map>
+#include "gripper_inverse_kinematics.h"
 
-using namespace std;
+/* Forward kinematics solver class
 
-struct gripper_dimensions
-{
-	// In millimeters
-	const float a = 53.63;
-	const float b = 75.95;
-	const float c = 19.0;
-	const float u = 11.5;
-	const float v = 0.0;
-	const float p = 2.25;
-	const float q = -29.5;
-	const float r = 8.5;
-	const float s = 20.0;
-	// In rad
-	const float psi_offset = 0.7946;
-};
-
-float Deg2Rad(float deg)
-{
-    return deg * M_PI / 180.0;
-}
-
-class GripperFKSolver{
-public:
-	GripperFKSolver(float a, float b, float c, float u, float v, float p, float q, float r, float s, float psi_offset);
-	float ComputeDistance(float psi);
-private:
-	float ComputeAx(float psi);
-
-	// In millimeters
-	float a_;
-	float b_;
-	float c_;
-	float u_;
-	float v_;
-	float p_;
-	float q_;
-	float r_;
-	float s_;
-	float g_;
-	// In radians
-	float psi_offset_;
-	float sigma_;
-};
+Computes the distance between fingers
+given a servo angle
+*/
 
 GripperFKSolver::GripperFKSolver(float a, float b, float c, float u, float v, float p, float q, float r, float s, float psi_offset): a_(a),
  								 b_(b), c_(c), u_(u), v_(v), p_(p), q_(q), r_(r), s_(s), psi_offset_(psi_offset) {
@@ -71,23 +29,15 @@ float GripperFKSolver::ComputeDistance(float psi){
 	return (ComputeAx(psi+psi_offset_) - r_)*2;
 }
 
-class GripperInverseKinematics{
-public:
-	GripperInverseKinematics();
-	uint16_t GetStepsFromPosition(float distance);
 
-private:
-	float StepToAngle(uint16_t steps);
+/* Inverse kinematics solver class
 
-	map<float,int> generatedDistances_;		// IK lookup table
+Builds a lookup table from the
+forward kinematics and return the servo
+angle given the distance between fingers
+*/
 
-	const gripper_dimensions kGripperDim;
-	const uint16_t step_offset_ = 512;		// Step when gripper is open
-	const float step_ratio_ = 0.00511327;	// Ratio to convert from angle (rad) to steps
-	const uint8_t step_range_ = 120;		// Step range
-};
-
-GripperInverseKinematics::GripperInverseKinematics(){
+GripperInverseKinematics::GripperInverseKinematics(uint16_t min_step, uint16_t max_step) : step_offset_(max_step), step_range_(max_step-min_step) {
 	// Forward kinematics are used to create a lookup table for inverse kinematics
 	GripperFKSolver fk_solver_(kGripperDim.a, kGripperDim.b, kGripperDim.c, kGripperDim.u, kGripperDim.v, kGripperDim.p, kGripperDim.q, kGripperDim.r, kGripperDim.s, kGripperDim.psi_offset);
 
@@ -107,5 +57,8 @@ float GripperInverseKinematics::StepToAngle(uint16_t steps){
 // Returns the step cmd to close the gripper to a specific distance between fingers
 uint16_t GripperInverseKinematics::GetStepsFromPosition(float distance){
 	auto it = generatedDistances_.upper_bound(distance);		// Find closest distance (smaller) in lookup table
+	if (it == generatedDistances_.end()){
+		it = prev(it);		// if at the end, take last value of the map
+	}
 	return (*it).second;
 }

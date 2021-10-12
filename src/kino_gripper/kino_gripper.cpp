@@ -1,19 +1,14 @@
 #include "kino_gripper.h"
 
 KinoGripper::KinoGripper(uint8_t device_id, char* device_name, int baudrate, uint8_t close_ratio=255) : close_ratio_(close_ratio){
+	// Create Inverser Kinematics solver
+	ik_solver_ = std::unique_ptr<GripperInverseKinematics>(new GripperInverseKinematics(min_angle_, max_angle_));
+
 	// Create servomotor handler
 	gripper_servo_ = std::unique_ptr<DynamixelAX12Handler>(new DynamixelAX12Handler(device_id, device_name, baudrate));
 
-	// Compute close angle
-	UpdateClosingAngle();
-
 	// Initalize servomotor
 	gripper_servo_->InitServo();
-}
-
-void KinoGripper::UpdateClosingAngle(){
-	closing_angle_  = max_angle_ - ((close_ratio_/std::numeric_limits<uint8_t>::max()) * (max_angle_ - min_angle_));
-	return;
 }
 
 bool KinoGripper::SetSpeed(uint16_t speed){
@@ -48,7 +43,6 @@ bool KinoGripper::EnableTorque(bool enable){
 bool KinoGripper::SetMinMaxAngle(uint16_t min_angle, uint16_t max_angle){
 	min_angle_ = min_angle;
 	max_angle_ = max_angle;
-	UpdateClosingAngle();
 	return WriteMinMaxAngle();
 }
 
@@ -87,12 +81,14 @@ bool KinoGripper::WriteCompliance(){
 	return true;	
 }
 
-bool KinoGripper::Close(){
+// Close to specified distance between fingers
+bool KinoGripper::Close(float position){
+	closing_angle_ = position;
 	try{
 		WriteSpeed();
 		WriteCompliance();
 		EnableTorque(true);
-		gripper_servo_->SendPositionCommand(closing_angle_);
+		gripper_servo_->SendPositionCommand(min(ik_solver_->GetStepsFromPosition(closing_angle_),min_angle_)); // position in mm
 	}
 	catch (DynamixelAX12Exception& e){
 		std::string error_msg = "could not close gripper, "+std::string(e.what());

@@ -60,6 +60,3 @@ target_link_libraries(dynamixel_cpp_sample ${catkin_LIBRARIES})
 
 add_executable(kino_gripper_node src/kino_gripper_node.cpp)
 target_link_libraries(kino_gripper_node ${PROJECT_NAME} ${catkin_LIBRARIES})
-
-add_executable(fk_gripper src/fk_gripper.cpp)
-target_link_libraries(fk_gripper ${catkin_LIBRARIES})
