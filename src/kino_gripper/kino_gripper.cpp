@@ -83,12 +83,12 @@ bool KinoGripper::WriteCompliance(){
 
 // Close to specified distance between fingers
 bool KinoGripper::Close(float position){
-	closing_angle_ = position;
+	closing_angle_ = max(ik_solver_->GetStepsFromPosition(position),min_angle_);
 	try{
 		WriteSpeed();
 		WriteCompliance();
 		EnableTorque(true);
-		gripper_servo_->SendPositionCommand(min(ik_solver_->GetStepsFromPosition(closing_angle_),min_angle_)); // position in mm
+		gripper_servo_->SendPositionCommand(closing_angle_); // position in mm
 	}
 	catch (DynamixelAX12Exception& e){
 		std::string error_msg = "could not close gripper, "+std::string(e.what());

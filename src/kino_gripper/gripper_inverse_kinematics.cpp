@@ -44,7 +44,7 @@ GripperInverseKinematics::GripperInverseKinematics(uint16_t min_step, uint16_t m
 	// Generate distance for every angle steps and populate lookup table
 	for (int i=0; i<=step_range_; ++i){
 		generatedDistances_[fk_solver_.ComputeDistance(StepToAngle(i))] = step_offset_ - i;	// steps start at offset and decrease to increase angle and close gripper
-		cout << "Adding distance " << fk_solver_.ComputeDistance(StepToAngle(i)) << "mm for step " << step_offset_ - i << ", angle of " << StepToAngle(i) << "rad" << endl;
+		//cout << "Adding distance " << fk_solver_.ComputeDistance(StepToAngle(i)) << "mm for step " << step_offset_ - i << ", angle of " << StepToAngle(i) << "rad" << endl; // for debug
 	}
 }
 
