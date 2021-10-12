@@ -52,6 +52,7 @@ include_directories(
  add_library(${PROJECT_NAME}
    src/${PROJECT_NAME}/kino_gripper.cpp
    src/${PROJECT_NAME}/dynamixel_ax12_handler.cpp
+   src/${PROJECT_NAME}/gripper_inverse_kinematics.cpp
  )
 
 add_executable(dynamixel_cpp_sample src/dynamixel_cpp_sample.cpp)
@@ -59,3 +60,6 @@ target_link_libraries(dynamixel_cpp_sample ${catkin_LIBRARIES})
 
 add_executable(kino_gripper_node src/kino_gripper_node.cpp)
 target_link_libraries(kino_gripper_node ${PROJECT_NAME} ${catkin_LIBRARIES})
+
+add_executable(fk_gripper src/fk_gripper.cpp)
+target_link_libraries(fk_gripper ${catkin_LIBRARIES})
