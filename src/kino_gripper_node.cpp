@@ -63,26 +63,16 @@ void KinoGripperNode::PrintWarning(std::string& warning_msg){
 
 
 int main(int argc, char **argv){
-	ros::init(argc, argv, "gripper");
+	ros::init(argc, argv, "kino_gripper");
 	ros::NodeHandle nh;
 
-	KinoGripper gripper(1, "/dev/ttyACM0", 1000000);
-	gripper.InitGripper();
-	gripper.SetSpeed(50);
+	KinoGripperNode gripper_node("/dev/ttyACM0");
 
 	while(ros::ok()){
-		if (!gripper.IsMoving()){
-			if (gripper.IsClosed()){
-				ROS_INFO_STREAM("Opening gripper");
-				gripper.Open();
-			}
-			else{
-				ROS_INFO_STREAM("Closing gripper");
-				gripper.Close(0);
-			}
-		}
-		ros::Duration(1.5).sleep();
+		ros::spin();
 	}
+
+	ROS_INFO_STREAM("Kino gripper node: shutting down");
 
 	return 0;
 }
