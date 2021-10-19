@@ -1,11 +1,12 @@
 #include <ros/ros.h>
+#include <string>
 #include <kino_gripper.h>
 #include "control_msgs/GripperCommand.h"
 
 
 class KinoGripperNode: public KinoGripper {
 public:
-	KinoGripperNode(char* device_name);
+	KinoGripperNode(char const* device_name);
 private:
 	void SetSubAndPub(ros::NodeHandle& private_nh);
 	void GetParam(ros::NodeHandle& private_nh);
@@ -20,7 +21,7 @@ private:
 	const int default_baudrate_ = 1000000;
 };
 
-KinoGripperNode::KinoGripperNode(char* device_name = "/dev/ttyACM0") : KinoGripper(1, device_name, 1000000){
+KinoGripperNode::KinoGripperNode(char const* device_name = "/dev/ttyACM0") : KinoGripper(1, device_name, 1000000){
 	ros::NodeHandle nh;
 	ros::NodeHandle private_nh("~");
 
@@ -65,8 +66,12 @@ void KinoGripperNode::PrintWarning(std::string& warning_msg){
 int main(int argc, char **argv){
 	ros::init(argc, argv, "kino_gripper");
 	ros::NodeHandle nh;
+	ros::NodeHandle private_nh("~");
 
-	KinoGripperNode gripper_node("/dev/ttyACM0");
+
+	std::string servo_port = "/dev/ttyACM0";	// Default servomotor port
+	private_nh.getParam("port", servo_port);	// Try to get port param, use default if unsuccessful
+	KinoGripperNode gripper_node(servo_port.c_str());	// Create gripper object
 
 	while(ros::ok()){
 		ros::spin();

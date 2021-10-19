@@ -1,6 +1,6 @@
 #include "kino_gripper.h"
 
-KinoGripper::KinoGripper(int device_id, char* device_name, int baudrate) : device_id_(device_id), device_name_(device_name), baudrate_(baudrate){
+KinoGripper::KinoGripper(int device_id, char const* device_name, int baudrate) : device_id_(device_id), device_name_(device_name), baudrate_(baudrate){
 }
 
 void KinoGripper::InitGripper(){

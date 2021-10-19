@@ -27,7 +27,7 @@ Uses Dynamixel protocol version 1.0
 */
 class DynamixelAX12Handler{
 public:
-	DynamixelAX12Handler(uint8_t device_id, char* device_name, int baudrate);
+	DynamixelAX12Handler(uint8_t device_id, char const* device_name, int baudrate);
 	bool InitServo();
 	bool SetSpeed(uint16_t speed);
 	bool SetMinMaxAngle(uint16_t min_angle, uint16_t max_angle);

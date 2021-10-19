@@ -15,7 +15,7 @@ to control the gripper
 */
 class KinoGripper{
 public:
-	KinoGripper(int device_id, char* device_name, int baudrate);
+	KinoGripper(int device_id, char const* device_name, int baudrate);
 	void InitGripper();
 
 	bool SetSpeed(uint16_t speed);
@@ -32,7 +32,7 @@ protected:
 
 	int device_id_;
 	int baudrate_;
-	char* device_name_;
+	char const* device_name_;
 
 	bool EnableTorque(bool enable);
 	virtual void PrintError(std::string& error_msg);
