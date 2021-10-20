@@ -3,7 +3,7 @@
 ## Forward Kinematics
 The gripper dimensions (right finger) are simplified and detailed below.
 
-<img src="/documentation/kino_gripper_schematics.png" align="center" width="500"/>
+<img src="/resources/documentation/kino_gripper_schematics.png" align="center" width="500"/>
 
 The following equations can be deducted:
 * Ax = u + a×cos(θ)
