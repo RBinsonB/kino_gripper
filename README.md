@@ -1,5 +1,7 @@
 # Kino Gripper
-3D printed Kino gripper repository/ROS package.
+3D printed Kino gripper repository/ROS package. The gripper is an adaptative gripper using a [Dynamixel AX-12A servomotor](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/) as actuator, leveraging its abilies as a smart gripper: compliance, possibility to set torque, velocity... Communication with the servomotor is handled with an integrated [USB2AX](http://www.xevelabs.com/doku.php?id=product:usb2ax:usb2ax). Power is provided by a DC-DC buck converter.
+
+The gripper is designed to be mounted on a HEBI Robotics Arm but can easily be modified to be mounted on other arms.
 
 ## Installation
 The gripper package can be used as a ROS or C++ package.
@@ -24,7 +26,7 @@ catkin_make
 ### ROS Node
 The gripper ROS node can be launched using the following command. Don't forget to set the appropriate port, device ID and baudrate parameters beforehand.
 ```
-rosrun kino_gripper kino_gripper
+rosrun kino_gripper kino_gripper_node
 ```
 
 #### Subscribed Topics
