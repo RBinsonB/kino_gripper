@@ -1,7 +1,31 @@
 # Kino Gripper
-3D printed Kino gripper repository/ROS package. The gripper is an adaptative gripper using a [Dynamixel AX-12A servomotor](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/) as actuator, leveraging its abilies as a smart gripper: compliance, possibility to set torque, velocity... Communication with the servomotor is handled with an integrated [USB2AX](http://www.xevelabs.com/doku.php?id=product:usb2ax:usb2ax). Power is provided by a DC-DC buck converter.
+3D printed Kino gripper repository/ROS package.
+
+Kino, from the greek κίνημα kinema ("movement, motion"), is an adaptative gripper using a [Dynamixel AX-12A servomotor](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/) as actuator, leveraging its abilies as a smart gripper: compliance, possibility to set torque, velocity... Communication with the servomotor is handled with an integrated [USB2AX](http://www.xevelabs.com/doku.php?id=product:usb2ax:usb2ax). Power is provided by a DC-DC buck converter.
 
 The gripper is designed to be mounted on a [HEBI Robotics Arm](https://www.hebirobotics.com/robot-arms) but can easily be modified to be mounted on other arms.
+
+[Assembly instructions can be found here](/resources/documentation/kino_gripper_assembly.md).
+
+<img src="/resources/documentation/pictures/render.jpg" align="center" width="400"/>
+
+## Features
+
+### Compliance
+Torque and position compliance is provided by the servomotor. The compliance values can be set according to the [Dynamixel AX-12A documentation](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/#compliance-margin-26-27).
+
+### Adaptive grip
+Thanks to the spring on each finger, the gripper can fold to encircle small objects. The spring can be changed to allow for easier/harder finger deformation.
+
+<!--- ADD PICTURE -->
+
+### Changeable finger tips
+Finger tips can be change by simply unscrewing/screwing. Three finger tip types are provided, but more can easily be designed:
+* Default, with zig-zag pattern
+* Thin pads, to be printed and completed by gluing a thin rubber pad
+* Thick pads, to be printed and completed by gluing a thick foam pad
+
+<!--- ADD PICTURE -->
 
 ## Installation
 The gripper package can be used as a ROS or C++ package.
