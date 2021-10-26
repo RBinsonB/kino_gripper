@@ -28,8 +28,8 @@ The following parts are required to assemble the case.
 * (1x) [USB2AX](http://www.xevelabs.com/doku.php?id=product:usb2ax:usb2ax)
 * (1x) Voltage regulator (step-down) LM2596 boards. The boards are cheap and easily findable online, but they should have the following dimensions to fit within the case.
 
-<a><img src="/documentation/pictures/lm2596_board.jpg" height="300" width="300"/></a>
-<img src="/documentation/pictures/lm2596_dimensions.png" height="300"/>
+<a><img src="/resources/documentation/pictures/lm2596_board.jpg" height="300" width="300"/></a>
+<img src="/resources/documentation/pictures/lm2596_dimensions.png" height="300"/>
 
 ### Mechanical parts
 * (18x) Ball bearing 10x4x3mm
