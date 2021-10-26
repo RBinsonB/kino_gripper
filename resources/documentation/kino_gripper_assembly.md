@@ -32,15 +32,21 @@ The following parts are required to assemble the case.
 <img src="/documentation/pictures/lm2596_dimensions.png" height="300"/>
 
 ### Mechanical parts
-* (16x) Ball bearing
-* (2x) Extension spring (length max of 50mm at rest)
+* (18x) Ball bearing 10x4x3mm
+* (2x) Extension spring (length max of 50mm at rest, diameter max of 8.5mm)
 * (12x) M3 inserts (M4 outer diameter)
-* (6x) M3 nuts
+* (7x) M3 nuts
 * (8x) (optionally self-locking) M3 nuts
 * (12x) M3 x 16mm hex socket head screws
 * (8x) M3 x 20mm hex socket head screws
+* (2x) M3 x 5mm hex socket head screws
+* (1x) M3 x 25mm countersunk head screw
+* (7x) M5 x 8mm hex socket head screws (for attaching to the HEBI actuator)
+* (6x) M2 x 10mm screws (for fastening servomotor)
+* (6x) M2 nuts (for fastening servomotor)
 * (3x) Zip ties
 
 ### Connectors
 * (1x) Molex minifit Jr. male housing (2x1) and its associated crimp terminals (for connecting with HEBI Robotics Arm power supply)
 * (2x) Mini-SPOX 2.50mm female housing (3 pins) and its associated crimp terminals (for connecting with the Dynamixel AX-12A servomotor, check [Dynamixel servomotor documentation](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/#connector-information) for more information)
+* (1x) male & female connector (and associated crimp terminals) with at least 3 pins, small enough to fit inside the gripper. Here, a 2x2 Molex Microfit is used.
