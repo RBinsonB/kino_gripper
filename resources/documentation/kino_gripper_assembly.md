@@ -1,7 +1,7 @@
 # Assembly instructions
 ## Necessary parts
 
-The following parts are required to assemble the case.
+The following parts are required to assemble the gripper.
 
 ### Printed parts
 * (1x) Base
