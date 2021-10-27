@@ -7,9 +7,24 @@ The gripper is designed to be mounted on a [HEBI Robotics Arm](https://www.hebir
 
 [Assembly instructions can be found here](/resources/documentation/kino_gripper_assembly.md).
 
-<img src="/resources/documentation/pictures/render.jpg" align="center" width="400"/>
+<img src="/resources/documentation/pictures/render.jpg" align="center" width="500"/>
 
 ## Features
+
+### Gripper mount
+The gripper is designed to be mounted on a HEBI Robotics arm.
+
+<img src="/resources/documentation/pictures/mounting_1" align="center" width="500"/>
+
+Screw the base attachement part to the output shaft of the HEBI actuator.
+
+<img src="/resources/documentation/pictures/mounting_2" align="center" width="500"/>
+
+Connect with the main part of the gripper.
+
+<img src="/resources/documentation/pictures/mounting_3" align="center" width="500"/>
+
+Slide the main part of the gripper, being careful not to damage the USB connector. Screw the main part in place
 
 ### Compliance
 Torque and position compliance is provided by the servomotor. The compliance values can be set according to the [Dynamixel AX-12A documentation](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/#compliance-margin-26-27).
