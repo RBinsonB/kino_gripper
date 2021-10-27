@@ -14,15 +14,15 @@ The gripper is designed to be mounted on a [HEBI Robotics Arm](https://www.hebir
 ### Gripper mount
 The gripper is designed to be mounted on a HEBI Robotics arm.
 
-<img src="/resources/documentation/pictures/mounting_1" align="center" width="500"/>
+<img src="/resources/documentation/pictures/mounting_1.png" align="center" width="500"/>
 
 Screw the base attachement part to the output shaft of the HEBI actuator.
 
-<img src="/resources/documentation/pictures/mounting_2" align="center" width="500"/>
+<img src="/resources/documentation/pictures/mounting_2.png" align="center" width="500"/>
 
 Connect with the main part of the gripper.
 
-<img src="/resources/documentation/pictures/mounting_3" align="center" width="500"/>
+<img src="/resources/documentation/pictures/mounting_3.png" align="center" width="500"/>
 
 Slide the main part of the gripper, being careful not to damage the USB connector. Screw the main part in place
 
