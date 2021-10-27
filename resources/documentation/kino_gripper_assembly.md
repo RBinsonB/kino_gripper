@@ -70,53 +70,53 @@ The following printing parameters were used for all parts printed in PLA:
 
 Add the inserts in the attachment part. Use a soldering iron is needed.
 
-<img src="/resources/documentation/pictures/assembly_1.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_1.jpg" align="center" width="500"/>
 
 Clip in the USB2AX.
 
-<img src="/resources/documentation/pictures/assembly_2.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_2.jpg" align="center" width="500"/>
 
 Solder the required wires on the DC power supply. It is also a good time to adjust the voltage output for the servomotor (between 9V and !"V, ideally 11.1V).
 
-<img src="/resources/documentation/pictures/assembly_3.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_3.jpg" align="center" width="500"/>
 
 It can be then screwed in place using M3x5mm screws. On the other end on the input wires, crimp the minifit male housing connector, so that the gripper can be plugged to the HEBI Robotics power supply.
 
-<img src="/resources/documentation/pictures/assembly_4.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_4.jpg" align="center" width="500"/>
 
-<img src="/resources/documentation/pictures/assembly_5.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_5.jpg" align="center" width="500"/>
 
 Prepare the output cable of the USB2AX by crimping a mini-SPOX connector. Only the two side wires should be connected, not the middle one, since power will be provided by the DC power supply.
 
-<img src="/resources/documentation/pictures/assembly_6.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_6.jpg" align="center" width="500"/>
 
 Connect the cable and ziptie it with the power output wires.
 
-<img src="/resources/documentation/pictures/assembly_7.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_7.jpg" align="center" width="500"/>
 
 Respecting the connector pins, crimp the output power sypply ground and the USB2AX output ground together. Connect the ground, data output wire and power supply positive wire in a connector (here a Molex microfit).
 
-<img src="/resources/documentation/pictures/assembly_8.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_8.jpg" align="center" width="500"/>
 
 On the other main part, prepare a cable that will be connected to the servomotor. Crimp a mini-SPOX connector on one side and the complementary connector (here a Molex microfit), respecting the wiring of Dynamixel AX12-A servomotor. Fasten the cable against the part using zipties.
 
-<img src="/resources/documentation/pictures/assembly_9.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_9.jpg" align="center" width="500"/>
 
 Insert the M3 nut under the part.
 
-<img src="/resources/documentation/pictures/assembly_10.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_10.jpg" align="center" width="500"/>
 
 Put the servomotor in place, sliding it from under, and fasten it using M2x10mm screws.
 
-<img src="/resources/documentation/pictures/assembly_11.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_11.jpg" align="center" width="500"/>
 
 Prepare the right geared finger by mounting the 2 ball bearing on its axle, one on each side.
 
-<img src="/resources/documentation/pictures/assembly_12.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_12.jpg" align="center" width="500"/>
 
 Slide the finger in place and fasten it on its axle using a M3x25mm countersunk head screw.
 
-<img src="/resources/documentation/pictures/assembly_13.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/assembly_13.jpg" align="center" width="500"/>
 
 
 
