@@ -1,7 +1,7 @@
 # Kino Gripper
 3D printed Kino gripper repository/ROS package.
 
-Kino, from the greek ?????? kinema ("movement, motion"), is an adaptative gripper using a [Dynamixel AX-12A servomotor](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/) as actuator. It leverages the abilies of the smart servomotor: compliance, possibility to set torque, velocity... Communication with the servomotor is handled with an integrated [USB2AX](http://www.xevelabs.com/doku.php?id=product:usb2ax:usb2ax). Power is provided by a DC-DC buck converter.
+Kino, from the greek κίνημα kinema ("movement, motion"), is an adaptative gripper using a [Dynamixel AX-12A servomotor](https://emanual.robotis.com/docs/en/dxl/ax/ax-12a/) as actuator. It leverages the abilies of the smart servomotor: compliance, possibility to set torque, velocity... Communication with the servomotor is handled with an integrated [USB2AX](http://www.xevelabs.com/doku.php?id=product:usb2ax:usb2ax). Power is provided by a DC-DC buck converter.
 
 The gripper is designed to be mounted on a [HEBI Robotics Arm](https://www.hebirobotics.com/robot-arms) but can easily be modified to be mounted on other arms.
 
@@ -22,14 +22,14 @@ Thanks to the spring on each finger, the gripper can fold to encircle small obje
 ### Changeable finger tips
 Finger tips can be change by simply unscrewing/screwing.
 
-<img src="/resources/documentation/pictures/finger_tip_2.png" align="center" width="500"/>
+<img src="/resources/documentation/pictures/finger_tip_1.png" align="center" width="400"/>
 
 Three finger tip types are provided, but more can easily be designed:
 * Default, with zig-zag pattern
 * Thin pads, to be printed and completed by gluing a thin rubber pad
 * Thick pads, to be printed and completed by gluing a thick foam pad
 
-<img src="/resources/documentation/pictures/finger_tip_2.png" align="center" width="700"/>
+<img src="/resources/documentation/pictures/finger_tip_2.png" align="center" width="500"/>
 
 ## Installation
 The gripper package can be used as a ROS or C++ package.
