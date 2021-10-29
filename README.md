@@ -7,7 +7,7 @@ The gripper is designed to be mounted on a [HEBI Robotics Arm](https://www.hebir
 
 [Assembly instructions can be found here](/resources/documentation/kino_gripper_assembly.md).
 
-<img src="/resources/documentation/pictures/render.jpg" align="center" width="500"/>
+<img src="/resources/documentation/pictures/render.jpg" align="center" width="600"/>
 
 ## Features
 
@@ -183,3 +183,5 @@ bool SetCompliance(uint8_t cw_margin, uint8_t ccw_margin, uint8_t cw_slope, uint
   Returns :
       True if operation is successful
 ```
+## License
+All rights reserved
